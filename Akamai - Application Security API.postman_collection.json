@@ -1,0 +1,5045 @@
+{
+	"info": {
+		"_postman_id": "3c32bfe9-f4f7-48a0-a672-b9914ff64eb5",
+		"name": "Akamai | Application Security API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Application Security API",
+			"item": [
+				{
+					"name": "Security Configurations",
+					"item": [
+						{
+							"name": "List contracts and groups",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/contracts-groups",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"contracts-groups"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List available hostnames for a new configuration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/contracts/{{contractId}}/groups/{{groupId}}/selectable-hostnames",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"contracts",
+										"{{contractId}}",
+										"groups",
+										"{{groupId}}",
+										"selectable-hostnames"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List configurations",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a configuration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"{{configurationName}}\",\n    \"description\": \"{{configurationDescription}}\",\n    \"contractId\": \"{{contractId}}\",\n    \"groupId\": {{groupId}},\n    \"hostnames\": [\n        {{hostnamesToAdd}}\n    ]\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Rename a security configuration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"{{configurationName}}\",\n    \"description\": \"{{configurationDescription}}\"\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List configuration versions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": null,
+											"description": "Integer\t1\tThe index of the result page. If the value is -1, then pagination is ignored. The default value is 1.",
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "",
+											"description": "Integer\t10\tThe number of items on each result page. The default value is 25.",
+											"disabled": true
+										},
+										{
+											"key": "detail",
+											"value": null,
+											"description": "Boolean\tfalse\tWhen true, the results contain detailed information on versions. When false, the results contain summary information on versions.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Clone a configuration version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"createFromVersion\": {{versionNumber}},\n    \"ruleUpdate\": false\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "detail",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get configuration version details",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a configuration version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get the version notes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/version-notes",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"version-notes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update the version notes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"notes\": \"{{versionNotes}}\"\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/version-notes",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"version-notes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Export a configuration version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/export/configs/{{configId}}/versions/{{versionNumber}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"export",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Advanced Configuration Settings",
+					"item": [
+						{
+							"name": "Get the HTTP header log settings for a configuration",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/advanced-settings/logging",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"advanced-settings",
+										"logging"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify HTTP header log settings for a configuration",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "// For more information on the JSON to modify the HTTP Header Log settings, visit:\n// https://developer.akamai.com/api/cloud_security/application_security/v1.html#puthttpheaderloggingforaconfiguration"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/advanced-settings/logging",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"advanced-settings",
+										"logging"
+									]
+								},
+								"description": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#puthttpheaderloggingforaconfiguration"
+							},
+							"response": []
+						},
+						{
+							"name": "Get prefetch requests",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/advanced-settings/prefetch",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"advanced-settings",
+										"prefetch"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify prefetch requests",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// For more information on the JSON to modify these settings, visit:\n// https://developer.akamai.com/api/cloud_security/application_security/v1.html#putprefetchrequestsforaconfiguration",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/advanced-settings/prefetch",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"advanced-settings",
+										"prefetch"
+									]
+								},
+								"description": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#putprefetchrequestsforaconfiguration"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Pragma settings for a configuration",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/advanced-settings/pragma-header",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"advanced-settings",
+										"pragma-header"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify Pragma settings for a configuration",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// For more information on the JSON to modify these settings, visit:\n// https://developer.akamai.com/api/cloud_security/application_security/v1.html#putpragmaheaderconfiguration",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/advanced-settings/prefetch",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"advanced-settings",
+										"prefetch"
+									]
+								},
+								"description": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#putpragmaheaderconfiguration"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Hostnames",
+					"item": [
+						{
+							"name": "Get Hostname Coverage",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/hostname-coverage",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"hostname-coverage"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get the hostname coverage match targets",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/hostname-coverage/match-targets?hostname={{hostnameToCheck}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"hostname-coverage",
+										"match-targets"
+									],
+									"query": [
+										{
+											"key": "hostname",
+											"value": "{{hostnameToCheck}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List hostname overlaps",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/hostname-coverage/overlapping?hostname={{hostnameToCheck}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"hostname-coverage",
+										"overlapping"
+									],
+									"query": [
+										{
+											"key": "hostname",
+											"value": "{{hostnameToCheck}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List selectable hostnames",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/selectable-hostnames",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"selectable-hostnames"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List selected hostnames",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/selected-hostnames",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"selected-hostnames"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify selected hostnames",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"hostnameList\": [\n        {\n            \"hostname\": \"{{hostnameToAdd}}\"\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/selected-hostnames",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"selected-hostnames"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List evaluation hostnames | WAP ONLY",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/selected-hostnames/eval-hostnames",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"selected-hostnames",
+										"eval-hostnames"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify evaluation hostnames | WAP ONLY",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"hostnames\": [\n        {{hostnamesToAdd}}\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/selected-hostnames/eval-hostnames",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"selected-hostnames",
+										"eval-hostnames"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Protect evaluation hostnames | WAP ONLY",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"hostnames\": [\n        {{hostnamesToAdd}}\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/protect-eval-hostnames",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"protect-eval-hostnames"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Security Policies",
+					"item": [
+						{
+							"name": "List security policies",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies"
+									],
+									"query": [
+										{
+											"key": "notMatched",
+											"value": null,
+											"description": "notMatched\tBoolean\tfalse\tIf true, returns all security policies in the configuration version which don't have a match target. If false, returns all security policies in the configuration version.",
+											"disabled": true
+										},
+										{
+											"key": "detail",
+											"value": null,
+											"description": "detail\tBoolean\ttrue\tWhen enabled, the response features a richer set of data than the default, which includes only the name and ID of each item.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Clone or create a security policy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"createFromSecurityPolicy\": \"\",\n    \"policyName\": \"{{policyName}}\",\n    \"policyPrefix\": \"{{policyPrefix}}\"\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a security policy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify a security policy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"policyName\": \"{{policyName}}\"\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a security policy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"policyName\": \"{{policyName}}\"\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get protections",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/protections",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"protections"
+									],
+									"query": [
+										{
+											"key": "notMatched",
+											"value": null,
+											"description": "notMatched\tBoolean\tfalse\tIf true, returns all security policies in the configuration version which don't have a match target. If false, returns all security policies in the configuration version.",
+											"disabled": true
+										},
+										{
+											"key": "detail",
+											"value": null,
+											"description": "detail\tBoolean\ttrue\tWhen enabled, the response features a richer set of data than the default, which includes only the name and ID of each item.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify protections",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"applyApiConstraints\": true/false,\n    \"applyApplicationLayerControls\": true/false,\n    \"applyNetworkLayerControls\": true/false,\n    \"applyRateControls\": true/false,\n    \"applySlowPostControls\": true/false,\n    \"applyReputationControls\": true/false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/protections",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"protections"
+									],
+									"query": [
+										{
+											"key": "notMatched",
+											"value": null,
+											"description": "notMatched\tBoolean\tfalse\tIf true, returns all security policies in the configuration version which don't have a match target. If false, returns all security policies in the configuration version.",
+											"disabled": true
+										},
+										{
+											"key": "detail",
+											"value": null,
+											"description": "detail\tBoolean\ttrue\tWhen enabled, the response features a richer set of data than the default, which includes only the name and ID of each item.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Security Policy Advanced Settings",
+					"item": [
+						{
+							"name": "Get HTTP header log settings",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/advanced-settings/logging",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"advanced-settings",
+										"logging"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify HTTP header log settings",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "// For more information on the JSON to modify the HTTP Header Log settings, visit:\n// https://developer.akamai.com/api/cloud_security/application_security/v1.html#puthttpheaderloggingforaconfiguration"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/appsec/v1/configs/{{configId}}/versions/{versionNumber}/security-policies/{policyId}/advanced-settings/logging",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{versionNumber}",
+										"security-policies",
+										"{policyId}",
+										"advanced-settings",
+										"logging"
+									]
+								},
+								"description": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#puthttpheaderlogging"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Pragma settings for a security policy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/advanced-settings/pragma-header",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"advanced-settings",
+										"pragma-header"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify Pragma settings for a security policy",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// For more information on the JSON to modify these settings, visit:\n// https://developer.akamai.com/api/cloud_security/application_security/v1.html#putpragmaheaderconfiguration",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/advanced-settings/pragma-header",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"advanced-settings",
+										"pragma-header"
+									]
+								},
+								"description": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#putpragmaheaderpolicy"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Match Targets",
+					"item": [
+						{
+							"name": "List match targets",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/match-targets",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"match-targets"
+									],
+									"query": [
+										{
+											"key": "policyId",
+											"value": null,
+											"description": "policyId\tString\tancv_1234\tSpecifies the security policy to filter match targets.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a match target",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"type\": \"website\",\n  \"configId\": {{configId}},\n  \"configVersion\": 1,\n  \"defaultFile\": \"NO_MATCH\",\n  \"effectiveSecurityControls\": {\n    \"applyApplicationLayerControls\": true,\n    \"applyNetworkLayerControls\": true,\n    \"applyRateControls\": true,\n    \"applySlowPostControls\": true\n  },\n  \"filePaths\": [\n    \"/*\"\n  ],\n  \"hostnames\": [\n    \"{{hostnameToAdd}}\"\n  ],\n  \"isNegativeFileExtensionMatch\": false,\n  \"isNegativePathMatch\": true,\n  \"securityPolicy\": {\n    \"policyId\": \"{{policyId}}\"\n  },\n  \"sequence\": 1,\n  \"targetId\": {{targetId}}\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/match-targets",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"match-targets"
+									]
+								},
+								"description": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#postmatchtargets"
+							},
+							"response": []
+						},
+						{
+							"name": "Modify match target order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"website\",\n    \"targetSequence\": [\n        {\n            \"targetId\": {{targetId}},\n            \"sequence\": 1\n        },\n        {\n            \"targetId\": {{targetId2}},\n            \"sequence\": 2\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/match-targets/sequence",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"match-targets",
+										"sequence"
+									]
+								},
+								"description": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#putsequence"
+							},
+							"response": []
+						},
+						{
+							"name": "Get a match target",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/match-targets/{{targetId}}?includeChildObjectName",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"match-targets",
+										"{{targetId}}"
+									],
+									"query": [
+										{
+											"key": "includeChildObjectName",
+											"value": null,
+											"description": "includeChildObjectName\tBoolean\ttrue\tSpecify whether to return the object name in the payload."
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify a match target",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"type\": \"website\",\n  \"configId\": {{configId}},\n  \"configVersion\": 1,\n  \"defaultFile\": \"NO_MATCH\",\n  \"effectiveSecurityControls\": {\n    \"applyApplicationLayerControls\": true,\n    \"applyNetworkLayerControls\": true,\n    \"applyRateControls\": true,\n    \"applySlowPostControls\": true\n  },\n  \"filePaths\": [\n    \"/*\"\n  ],\n  \"hostnames\": [\n    \"{{hostnameToAdd}}\"\n  ],\n  \"isNegativeFileExtensionMatch\": false,\n  \"isNegativePathMatch\": true,\n  \"securityPolicy\": {\n    \"policyId\": \"{{policyId}}\"\n  },\n  \"sequence\": 1,\n  \"targetId\": {{targetId}}\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/match-targets/{{targetId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"match-targets",
+										"{{targetId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a match target",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/match-targets/{{targetId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"match-targets",
+										"{{targetId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Custom Deny",
+					"item": [
+						{
+							"name": "List custom deny actions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/custom-deny?search=",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"custom-deny"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "",
+											"description": "String\t234\tFilter results by name, description, or ID. You can match on substrings."
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a custom deny action",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/custom-deny",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"custom-deny"
+									]
+								},
+								"description": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#postcustomdeny"
+							},
+							"response": []
+						},
+						{
+							"name": "Get a custom deny action",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}//custom-deny/{{customDenyId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"",
+										"custom-deny",
+										"{{customDenyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify a custom deny action",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/custom-deny/{{customDenyId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"custom-deny",
+										"{{customDenyId}}"
+									]
+								},
+								"description": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#putcustomdenyaction"
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a custom deny action",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/custom-deny/{{customDenyId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"custom-deny",
+										"{{customDenyId}}"
+									]
+								},
+								"description": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#putcustomdenyaction"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Failover Hostnames",
+					"item": [
+						{
+							"name": "List failover hostnames",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/failover-hostnames",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"failover-hostnames"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "IP/Geo Firewall",
+					"item": [
+						{
+							"name": "Get the IP/Geo Firewall settings",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/ip-geo-firewall",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"ip-geo-firewall"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update the IP Geo Firewall settings",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/ip-geo-firewall",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"ip-geo-firewall"
+									]
+								},
+								"description": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#putipgeofirewall"
+							},
+							"response": []
+						},
+						{
+							"name": "Get the bypass network lists settings | WAP ONLY",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/bypass-network-lists",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"bypass-network-lists"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify the bypass network lists settings | WAP ONLY",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"networkLists\": [\n        {{networkLists}}\n    ]\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/bypass-network-lists",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"bypass-network-lists"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Rate Policies",
+					"item": [
+						{
+							"name": "List rate policies",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/rate-policies",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"rate-policies"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a rate policy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"matchType\": \"path\",\n    \"type\": \"WAF\",\n    \"name\": \"Test_Paths 2\",\n    \"description\": \"AFW Test Extensions\",\n    \"averageThreshold\": 5,\n    \"burstThreshold\": 10,\n    \"clientIdentifier\": \"ip\",\n    \"useXForwardForHeaders\": true,\n    \"requestType\": \"ClientRequest\",\n    \"sameActionOnIpv6\": false,\n    \"path\": {\n        \"positiveMatch\": true,\n        \"values\": [\n            \"/login/\",\n            \"/path/\"\n        ]\n    },\n    \"pathMatchType\": \"Custom\",\n    \"pathUriPositiveMatch\": true,\n    \"fileExtensions\": {\n        \"positiveMatch\": false,\n        \"values\": [\n            \"3g2\",\n            \"3gp\",\n            \"aif\",\n            \"aiff\",\n            \"au\",\n            \"avi\",\n            \"bin\",\n            \"bmp\",\n            \"cab\"\n        ]\n    },\n    \"hostnames\": [\n        \"www.ludin.org\"\n    ],\n    \"additionalMatchOptions\": [\n        {\n            \"positiveMatch\": true,\n            \"type\": \"IpAddressCondition\",\n            \"values\": [\n                \"198.129.76.39\"\n            ]\n        },\n        {\n            \"positiveMatch\": true,\n            \"type\": \"RequestMethodCondition\",\n            \"values\": [\n                \"GET\"\n            ]\n        }\n    ],\n    \"queryParameters\": [\n        {\n            \"name\": \"productId\",\n            \"values\": [\n                \"BUB_12\",\n                \"SUSH_11\"\n            ],\n            \"positiveMatch\": true,\n            \"valueInRange\": false\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/rate-policies",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"rate-policies"
+									]
+								},
+								"description": "For more information on the JSON to modify these settings, visit: https://developer.akamai.com/api/cloud_security/application_security/v1.html#postratepolicies"
+							},
+							"response": []
+						},
+						{
+							"name": "Get a rate policy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/rate-policies/{{ratePolicyId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"rate-policies",
+										"{{ratePolicyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify a rate policy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 2234,\n    \"matchType\": \"path\",\n    \"type\": \"WAF\",\n    \"name\": \"Test_Paths 2\",\n    \"description\": \"AFW Test Extensions\",\n    \"averageThreshold\": 5,\n    \"burstThreshold\": 10,\n    \"clientIdentifier\": \"ip\",\n    \"useXForwardForHeaders\": true,\n    \"requestType\": \"ClientRequest\",\n    \"sameActionOnIpv6\": false,\n    \"path\": {\n        \"positiveMatch\": true,\n        \"values\": [\n            \"/login/\",\n            \"/path/\"\n        ]\n    },\n    \"pathMatchType\": \"Custom\",\n    \"pathUriPositiveMatch\": true,\n    \"fileExtensions\": {\n        \"positiveMatch\": false,\n        \"values\": [\n            \"3g2\",\n            \"3gp\",\n            \"aif\",\n            \"aiff\",\n            \"au\",\n            \"avi\",\n            \"bin\",\n            \"bmp\",\n            \"cab\"\n        ]\n    },\n    \"hostnames\": [\n        \"www.ludin.org\"\n    ],\n    \"additionalMatchOptions\": [\n        {\n            \"positiveMatch\": true,\n            \"type\": \"IpAddressCondition\",\n            \"values\": [\n                \"198.129.76.40\"\n            ]\n        },\n        {\n            \"positiveMatch\": true,\n            \"type\": \"RequestMethodCondition\",\n            \"values\": [\n                \"GET\"\n            ]\n        }\n    ],\n    \"queryParameters\": [\n        {\n            \"name\": \"productId\",\n            \"values\": [\n                \"BUB_12\",\n                \"SUSH_11\"\n            ],\n            \"positiveMatch\": true,\n            \"valueInRange\": false\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/rate-policies/{{ratePolicyId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"rate-policies",
+										"{{ratePolicyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a rate policy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/rate-policies/{{ratePolicyId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"rate-policies",
+										"{{ratePolicyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List rate policy actions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/rate-policies",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"rate-policies"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify a rate policy action",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ipv4Action\": \"{{ruleAction}}\",\n    \"ipv6Action\": \"{{ruleAction}}\"\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/rate-policies/{{ratePolicyId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"rate-policies",
+										"{{ratePolicyId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Slow POST Settings",
+					"item": [
+						{
+							"name": "Get Slow POST protection settings",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/slow-post",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"slow-post"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify slow POST protection settings",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/slow-post",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"slow-post"
+									]
+								},
+								"description": "https://developer.akamai.com/api/cloud_security/application_security/v1.html#getratepolicyactions"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Web Application Firewall Settings",
+					"item": [
+						{
+							"name": "Get the current mode",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/mode",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"mode"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify the rule-set mode",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"mode\": \"{{ruleSetMode}}\"\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/mode",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"mode"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List attack groups",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/attack-groups",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"attack-groups"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get an attack group",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/attack-groups/{{attackGroupId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"attack-groups",
+										"{{attackGroupId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify the action for an attack group",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"action\": \"{{ruleAction}}\"\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/attack-groups/{{attackGroupId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"attack-groups",
+										"{{attackGroupId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get the exceptions of an attack group",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/attack-groups/{{attackGroupId}}/condition-exception",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"attack-groups",
+										"{{attackGroupId}}",
+										"condition-exception"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify the exceptions of an attack group",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"exception\": {\n        \"specificHeaderCookieParamXmlOrJsonNames\": [\n            {\n                \"selector\": \"REQUEST_HEADERS_NAMES\",\n                \"wildcard\": true\n            },\n            {\n                \"names\": [\n                    \"header2\",\n                    \"header1\"\n                ],\n                \"selector\": \"REQUEST_HEADERS\",\n                \"wildcard\": false\n            },\n            {\n                \"selector\": \"REQUEST_COOKIES_NAMES\",\n                \"wildcard\": true\n            },\n            {\n                \"names\": [\n                    \"cookie1\",\n                    \"cookie2\"\n                ],\n                \"selector\": \"REQUEST_COOKIES\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"ARGS_NAMES\",\n                \"wildcard\": true\n            },\n            {\n                \"names\": [\n                    \"param-name\"\n                ],\n                \"selector\": \"ARGS\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"JSON_NAMES\",\n                \"wildcard\": true\n            },\n            {\n                \"names\": [\n                    \"json1\"\n                ],\n                \"selector\": \"JSON_PAIRS\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"REQUEST_PROTOCOL\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"REQUEST_METHOD\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"REQUEST_URI\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"QUERY_STRING\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"REQUEST_FILENAME\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"REQUEST_PATH_SEGMENT\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"REQUEST_BODY\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"REQBODY_PROCESSOR_ERROR\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"FILES_NAMES\",\n                \"wildcard\": true\n            }\n        ]\n    }\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/attack-groups/{{attackGroupId}}/condition-exception",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"attack-groups",
+										"{{attackGroupId}}",
+										"condition-exception"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List rules | KRS ONLY",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/rules",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"rules"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upgrade KRS ruleset | KRS ONLY",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"upgrade\": true\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/rules",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"rules"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get the action for a rule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/rules/{{ruleId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"rules",
+										"{{ruleId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify the action for a rule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"action\": \"{{ruleAction}}\"\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/rules/{{ruleId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"rules",
+										"{{ruleId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get the conditions and exceptions of a rule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}}/rules/{{ruleId}}}/condition-exception",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}}",
+										"rules",
+										"{{ruleId}}}",
+										"condition-exception"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify the conditions and exceptions of a rule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/rules/{{ruleId}}/conditions-exceptions",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"rules",
+										"{{ruleId}}",
+										"conditions-exceptions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get upgrade details",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/rules/upgrade-details",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"rules",
+										"upgrade-details"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "WAF Evaluation Rules",
+					"item": [
+						{
+							"name": "Set evaluation mode",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"eval\": \"START\"\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/eval",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"eval"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List evaluation rules",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/eval-rules",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"eval-rules"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get the action of an evaluation rule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/eval-rules/{{ruleId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"eval-rules",
+										"{{ruleId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify the action of an evaluation rule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"action\": \"{{ruleAction}}\"\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/eval-rules/{{ruleId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"eval-rules",
+										"{{ruleId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get the conditions and exceptions for an evaluation rule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/eval-rules/{{ruleId}}/conditions-exceptions",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"eval-rules",
+										"{{ruleId}}",
+										"conditions-exceptions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify the conditions and exceptions for an evaluation rule | NOT WORKING",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/eval-rules/{{ruleId}}/conditions-exceptions",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"eval-rules",
+										"{{ruleId}}",
+										"conditions-exceptions"
+									]
+								},
+								"description": "https://developer.akamai.com/api/cloud_security/application_security/v1.html#putevalconditionsexceptions"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Penalty Box",
+					"item": [
+						{
+							"name": "Get the penalty box",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/penalty-box",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"penalty-box"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify the penalty box",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"action\": \"{{ruleAction}}\",\n    \"penaltyBoxProtection\": false\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/penalty-box",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"penalty-box"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Custom Rules Builder",
+					"item": [
+						{
+							"name": "List custom rules",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/custom-rules",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"custom-rules"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a custom rule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/custom-rules",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"custom-rules"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a custom rule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/custom-rules/{{customRuleId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"custom-rules",
+										"{{customRuleId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify a custom rule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/custom-rules/{{customRuleId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"custom-rules",
+										"{{customRuleId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a custom rule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/custom-rules/{{customRuleId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"custom-rules",
+										"{{customRuleId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List custom rule actions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/custom-rules",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"custom-rules"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify a custom rule action",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"action\": \"{{ruleAction}}\"\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/custom-rules/{{customRuleId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"custom-rules",
+										"{{customRuleId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "API Request Constraints",
+					"item": [
+						{
+							"name": "List API request constraints and actions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/api-request-constraints",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"api-request-constraints"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify the request constraint action for all API",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"action\": \"{{ruleAction}}\"\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/api-request-constraints",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"api-request-constraints"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify an API request constraint’s action",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"action\": \"{{ruleAction}}\"\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/api-request-constraints/{{apiId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"api-request-constraints",
+										"{{apiId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List API Endpoints",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/api-endpoints",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"api-endpoints"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Reputation Profiles",
+					"item": [
+						{
+							"name": "List reputation profiles",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/reputation-profiles",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"reputation-profiles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a reputation profile",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/reputation-profiles",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"reputation-profiles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify a reputation profile",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/reputation-profiles/{{reputationProfileId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"reputation-profiles",
+										"{{reputationProfileId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a reputation profile",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/reputation-profiles/{{reputationProfileId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"reputation-profiles",
+										"{{reputationProfileId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get the reputation analysis settings",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/reputation-analysis",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"reputation-analysis"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update the reputation analysis settings",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"forwardToHTTPHeader\": false,\n    \"forwardSharedIPToHTTPHeaderAndSIEM\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/reputation-analysis",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"reputation-analysis"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List reputation profile actions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/reputation-profiles",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"reputation-profiles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get the action for a reputation profile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/reputation-profiles/{{reputationProfileId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"reputation-profiles",
+										"{{reputationProfileId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify the action for a reputation profile",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"action\": \"{{ruleAction}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/reputation-profiles/{{reputationProfileId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"security-policies",
+										"{{policyId}}",
+										"reputation-profiles",
+										"{{reputationProfileId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "SIEM Settings",
+					"item": [
+						{
+							"name": "Get the SIEM settings",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/siem",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"siem"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify SIEM settings",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/siem",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"siem"
+									]
+								},
+								"description": "https://developer.akamai.com/api/cloud_security/application_security/v1.html#putsiemsettings"
+							},
+							"response": []
+						},
+						{
+							"name": "Get the SIEM versions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/siem-definitions",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"siem-definitions"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Notifications",
+					"item": [
+						{
+							"name": "List subscribers",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/notification/subscription/AAG_TUNING_REC",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"notification",
+										"subscription",
+										"AAG_TUNING_REC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Subscribe or unsubscribe to recommendation emails",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"action\": \"subscribe\",\n    \"emails\": [\n        \"{{email}}\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/notification/subscription/AAG_TUNING_REC",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"notification",
+										"subscription",
+										"AAG_TUNING_REC"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Activations",
+					"item": [
+						{
+							"name": "Activate a configuration version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"action\": \"ACTIVATE\",\n    \"network\": \"{{network}}\",\n    \"note\": \"{{notes}}\",\n    \"notificationEmails\": [\n        \"{{email}}\"\n    ],\n    \"activationConfigs\": [\n        {\n            \"configId\": {{configId}},\n            \"configVersion\": {{versionNumber}}\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/activations",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"activations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get an activation request status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/activations/status/{{statusId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"activations",
+										"status",
+										"{{statusId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get activation status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/activations/{{activationId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"activations",
+										"{{activationId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Network Lists API",
+			"item": [
+				{
+					"name": "List network lists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/network-list/v2/network-lists",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"network-list",
+								"v2",
+								"network-lists"
+							],
+							"query": [
+								{
+									"key": "includeElements",
+									"value": "false",
+									"description": "includeElements\tBoolean\ttrue\tIf enabled, the response list includes all items. For large network lists, this may slow responses and yield large response objects. The default false value when listing more than one network list omits the network list’s elements and only provides higher-level metadata.",
+									"disabled": true
+								},
+								{
+									"key": "extended",
+									"value": "false",
+									"description": "extended\tBoolean\ttrue\tWhen enabled, provides additional response data identifying who created and updated the list and when, and the network list’s deployment status in both STAGING and PRODUCTION environments. This data takes longer to provide.",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "search\tString\t192.168.\tOnly list items that match the specified substring in any network list’s name or list of items.",
+									"disabled": true
+								},
+								{
+									"key": "listType",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new network list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{networkListName}}\",\n    \"type\": \"IP\",\n    \"description\": \"{{networkListDescription}}\",\n    \"list\": [{{networkListIPs}}]\n}"
+						},
+						"url": {
+							"raw": "https://{{host}}/network-list/v2/network-lists",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"network-list",
+								"v2",
+								"network-lists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a network list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"network-list",
+								"v2",
+								"network-lists",
+								"{{networkListId}}"
+							],
+							"query": [
+								{
+									"key": "includeElements",
+									"value": "false",
+									"description": "includeElements\tBoolean\ttrue\tIf enabled, the response list includes all items. For large network lists, this may slow responses and yield large response objects. The default true value includes the list’s contents.\n",
+									"disabled": true
+								},
+								{
+									"key": "extended",
+									"value": "false",
+									"description": "extended\tBoolean\ttrue\tWhen enabled, provides additional response data identifying who created and updated the list and when, and the network list’s deployment status in both STAGING and PRODUCTION environments. This data takes longer to provide.",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a network list",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{networkListName}}\",\n    \"type\": \"IP\",\n    \"description\": \"{{networkListDescription}}\",\n    \"syncPoint\": {{syncPoint}},\n    \"list\": [{{networkListIPs}}]\n}"
+						},
+						"url": {
+							"raw": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"network-list",
+								"v2",
+								"network-lists",
+								"{{networkListId}}"
+							],
+							"query": [
+								{
+									"key": "includeElements",
+									"value": "false",
+									"description": "includeElements\tBoolean\ttrue\tIf enabled, the response list includes all items. For large network lists, this may slow responses and yield large response objects. The default true value includes the list’s contents.\n",
+									"disabled": true
+								},
+								{
+									"key": "extended",
+									"value": "false",
+									"description": "extended\tBoolean\ttrue\tWhen enabled, provides additional response data identifying who created and updated the list and when, and the network list’s deployment status in both STAGING and PRODUCTION environments. This data takes longer to provide.",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a network list",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"network-list",
+								"v2",
+								"network-lists",
+								"{{networkListId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Append elements to a network list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"list\": [\n        \"{{ip_cidrToAdd}}\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://{{host}}//network-list/v2/network-lists/{{networkListId}}/append",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"",
+								"network-list",
+								"v2",
+								"network-lists",
+								"{{networkListId}}",
+								"append"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add an element",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{networkListName}}\",\n    \"type\": \"IP\",\n    \"description\": \"{{networkListDescription}}\",\n    \"syncPoint\": {{syncPoint}},\n    \"list\": [{{networkListIPs}}]\n}"
+						},
+						"url": {
+							"raw": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}/elements?element={{elementId}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"network-list",
+								"v2",
+								"network-lists",
+								"{{networkListId}}",
+								"elements"
+							],
+							"query": [
+								{
+									"key": "element",
+									"value": "{{elementId}}",
+									"description": "Adds the specified element to the list. If the network list’s type is IP, the value needs to be a URL-encoded IP address or CIDR block. If the type is GEO, it’s a two-character country code"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove an element",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{networkListName}}\",\n    \"type\": \"IP\",\n    \"description\": \"{{networkListDescription}}\",\n    \"syncPoint\": {{syncPoint}},\n    \"list\": [{{networkListIPs}}]\n}"
+						},
+						"url": {
+							"raw": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}/elements?element={{elementId}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"network-list",
+								"v2",
+								"network-lists",
+								"{{networkListId}}",
+								"elements"
+							],
+							"query": [
+								{
+									"key": "element",
+									"value": "{{elementId}}",
+									"description": "Removes the specified element to the list. If the network list’s type is IP, the value needs to be a URL-encoded IP address or CIDR block. If the type is GEO, it’s a two-character country code"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate a network list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comments\": \"{{activationComments}}\",\n    \"notificationRecipients\": [\n        \"{{activationEmail}}\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}/environments/{{environment}}/activate",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"network-list",
+								"v2",
+								"network-lists",
+								"{{networkListId}}",
+								"environments",
+								"{{environment}}",
+								"activate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get activation status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}/environments/{{environment}}/status",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"network-list",
+								"v2",
+								"network-lists",
+								"{{networkListId}}",
+								"environments",
+								"{{environment}}",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an activation’s snapshot",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}/sync-points/{{syncPoint}}/history",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"network-list",
+								"v2",
+								"network-lists",
+								"{{networkListId}}",
+								"sync-points",
+								"{{syncPoint}}",
+								"history"
+							],
+							"query": [
+								{
+									"key": "extended",
+									"value": "false",
+									"description": "extended\tBoolean\ttrue\tWhen enabled, provides additional response data identifying who created and updated the list and when, and the network list’s deployment status in both STAGING and PRODUCTION environments. This data takes longer to provide.",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update network list details",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{networkListName}}\",\n    \"description\": \"{{networkListDescription}}\"\n}"
+						},
+						"url": {
+							"raw": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}/details",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"network-list",
+								"v2",
+								"network-lists",
+								"{{networkListId}}",
+								"details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subscribe to network lists",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"recipients\": [\n        \"{{subscribeEmail}}\"\n    ],\n    \"uniqueIds\": [\n        \"{{networkListId}}\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://{{host}}/network-list/v2/notifications/subscribe",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"network-list",
+								"v2",
+								"notifications",
+								"subscribe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unsubscribe to network lists",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"recipients\": [\n        \"{{subscribeEmail}}\"\n    ],\n    \"uniqueIds\": [\n        \"{{networkListId}}\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://{{host}}/network-list/v2/notifications/unsubscribe",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"network-list",
+								"v2",
+								"notifications",
+								"unsubscribe"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Site Shield API",
+			"item": [
+				{
+					"name": "List Maps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/siteshield/v1/maps",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"siteshield",
+								"v1",
+								"maps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Map",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/siteshield/v1/maps/{{siteShieldId}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"siteshield",
+								"v1",
+								"maps",
+								"{{siteShieldId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Acknowledge a Map",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/siteshield/v1/maps/{{siteShieldId}}/acknowledge",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"siteshield",
+								"v1",
+								"maps",
+								"{{siteShieldId}}",
+								"acknowledge"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "edgegrid",
+		"edgegrid": [
+			{
+				"key": "clientSecret",
+				"value": "{{client_secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientToken",
+				"value": "{{client_token}}",
+				"type": "string"
+			},
+			{
+				"key": "accessToken",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
