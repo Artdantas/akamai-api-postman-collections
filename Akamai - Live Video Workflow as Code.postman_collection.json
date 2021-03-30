@@ -1,0 +1,992 @@
+{
+	"info": {
+		"_postman_id": "859d3667-d8aa-4b3c-b60f-9d7e0985f7e0",
+		"name": "Akamai | Live Video Workflow as Code",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Phase 1: Provision a Media Services Live Origin",
+			"item": [
+				{
+					"name": "List Contract ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/config-media-live/v2/msl-origin/contracts",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"config-media-live",
+								"v2",
+								"msl-origin",
+								"contracts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a CP Code",
+					"request": {
+						"auth": {
+							"type": "edgegrid",
+							"edgegrid": [
+								{
+									"key": "clientSecret",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientToken",
+									"value": "{{client_token}}",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "baseURL",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{cpCodeName_MSL}}\",\n    \"contractId\": \"{{contractId}}\"\n}"
+						},
+						"url": {
+							"raw": "https://{{host}}/config-media-live/v2/msl-origin/cpcodes",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"config-media-live",
+								"v2",
+								"msl-origin",
+								"cpcodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List CP Codes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/config-media-live/v2/msl-origin/cpcodes?type=INGEST",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"config-media-live",
+								"v2",
+								"msl-origin",
+								"cpcodes"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "INGEST"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an Origin",
+					"request": {
+						"auth": {
+							"type": "edgegrid",
+							"edgegrid": [
+								{
+									"key": "clientSecret",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientToken",
+									"value": "{{client_token}}",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "baseURL",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contractId\": \"{{contractId}}\",\n    \"hostName\": \"{{hostnameIdentifier}}\",\n    \"cpcode\": {{cpCode_MSL}},\n    \"encoderZone\": \"{{encoderZone}}\",\n    \"backupEncoderZone\": \"{{backupEncoderZone}}\"\n}"
+						},
+						"url": {
+							"raw": "https://{{host}}/config-media-live/v2/msl-origin/origins",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"config-media-live",
+								"v2",
+								"msl-origin",
+								"origins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Origins",
+					"request": {
+						"auth": {
+							"type": "edgegrid",
+							"edgegrid": [
+								{
+									"key": "clientSecret",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientToken",
+									"value": "{{client_token}}",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "baseURL",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/config-media-live/v2/msl-origin/origins",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"config-media-live",
+								"v2",
+								"msl-origin",
+								"origins"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Phase 2: Create a Media Services Live Stream",
+			"item": [
+				{
+					"name": "Create a Stream",
+					"request": {
+						"auth": {
+							"type": "edgegrid",
+							"edgegrid": [
+								{
+									"key": "clientSecret",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientToken",
+									"value": "{{client_token}}",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "baseURL",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{streamName}}\",\n    \"contractId\": \"{{contractId}}\",\n    \"format\": \"{{streamingFormat}}\",\n    \"cpcode\": {{cpCode_MSL}},\n    \"ingestAccelerated\": false,\n    \"allowedIps\": [],\n    \"encoderZone\": \"{{encoderZone}}\",\n    \"backupEncoderZone\": \"{{backupEncoderZone}}\",\n    \"origin\": {\n        \"hostName\": \"{{hostname_MSL}}\"\n    },\n    \"additionalEmailIds\": [\n        \"{{activationEmail}}\"\n    ],\n    \"isDedicatedOrigin\": false\n}"
+						},
+						"url": {
+							"raw": "https://{{host}}/config-media-live/v2/msl-origin/streams",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"config-media-live",
+								"v2",
+								"msl-origin",
+								"streams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Streams",
+					"request": {
+						"auth": {
+							"type": "edgegrid",
+							"edgegrid": [
+								{
+									"key": "clientSecret",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientToken",
+									"value": "{{client_token}}",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "baseURL",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/config-media-live/v2/msl-origin/streams",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"config-media-live",
+								"v2",
+								"msl-origin",
+								"streams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Stream Details",
+					"request": {
+						"auth": {
+							"type": "edgegrid",
+							"edgegrid": [
+								{
+									"key": "clientSecret",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientToken",
+									"value": "{{client_token}}",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "baseURL",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/config-media-live/v2/msl-origin/streams/{{streamId}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"config-media-live",
+								"v2",
+								"msl-origin",
+								"streams",
+								"{{streamId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Phase 3: Create an Adaptive Media Delivery Configuration",
+			"item": [
+				{
+					"name": "List Products",
+					"request": {
+						"auth": {
+							"type": "edgegrid",
+							"edgegrid": [
+								{
+									"key": "clientSecret",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientToken",
+									"value": "{{client_token}}",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "baseURL",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/papi/v1/products?contractId={{contractId}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"papi",
+								"v1",
+								"products"
+							],
+							"query": [
+								{
+									"key": "contractId",
+									"value": "{{contractId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Groups",
+					"request": {
+						"auth": {
+							"type": "edgegrid",
+							"edgegrid": [
+								{
+									"key": "clientSecret",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientToken",
+									"value": "{{client_token}}",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "baseURL",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/papi/v1/groups",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"papi",
+								"v1",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create CP Code for AMD",
+					"request": {
+						"auth": {
+							"type": "edgegrid",
+							"edgegrid": [
+								{
+									"key": "clientSecret",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientToken",
+									"value": "{{client_token}}",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "baseURL",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\": \"prd_Adaptive_Media_Delivery\",\n    \"cpcodeName\": \"{{cpCodeName_AMD}}\"\n}"
+						},
+						"url": {
+							"raw": "https://{{host}}/papi/v1/cpcodes?contractId={{contractId}}&groupId={{groupId}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"papi",
+								"v1",
+								"cpcodes"
+							],
+							"query": [
+								{
+									"key": "contractId",
+									"value": "{{contractId}}"
+								},
+								{
+									"key": "groupId",
+									"value": "{{groupId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List CP Codes",
+					"request": {
+						"auth": {
+							"type": "edgegrid",
+							"edgegrid": [
+								{
+									"key": "clientSecret",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientToken",
+									"value": "{{client_token}}",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "baseURL",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}/papi/v1/cpcodes?groupId={{groupId}}&contractId={{contractId}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"papi",
+								"v1",
+								"cpcodes"
+							],
+							"query": [
+								{
+									"key": "groupId",
+									"value": "{{groupId}}"
+								},
+								{
+									"key": "contractId",
+									"value": "{{contractId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Edge Hostname for AMD",
+					"request": {
+						"auth": {
+							"type": "edgegrid",
+							"edgegrid": [
+								{
+									"key": "clientSecret",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientToken",
+									"value": "{{client_token}}",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "baseURL",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "PAPI-Use-Prefixes",
+								"value": "true",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\": \"prd_Adaptive_Media_Delivery\",\n    \"domainPrefix\": \"{{propertyName}}\",\n    \"domainSuffix\": \"akamaized.net\",\n    \"secureNetwork\": \"SHARED_CERT\",\n    \"ipVersionBehavior\": \"IPV6_COMPLIANCE\",\n    \"useCases\": [\n        {\n            \"useCase\": \"Segmented_Media_Mode\",\n            \"option\": \"LIVE\",\n            \"type\": \"GLOBAL\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://{{host}}/papi/v1/edgehostnames?contractId={{contractId}}&groupId={{groupId}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"papi",
+								"v1",
+								"edgehostnames"
+							],
+							"query": [
+								{
+									"key": "contractId",
+									"value": "{{contractId}}"
+								},
+								{
+									"key": "groupId",
+									"value": "{{groupId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create AMD Config",
+					"request": {
+						"auth": {
+							"type": "edgegrid",
+							"edgegrid": [
+								{
+									"key": "clientSecret",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientToken",
+									"value": "{{client_token}}",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "baseURL",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "PAPI-Use-Prefixes",
+								"value": "true",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contractId\": \"{{contractId}}\",\n    \"groupId\": \"{{groupId}}\",\n    \"productId\": \"prd_Adaptive_Media_Delivery\",\n    \"propertyName\": \"{{propertyName}}\",\n    \"propertyVersion\": 1,\n    \"ruleFormat\": \"latest\"\n} "
+						},
+						"url": {
+							"raw": "https://{{host}}/papi/v1/properties?contractId={{contractId}}&groupId={{groupId}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"papi",
+								"v1",
+								"properties"
+							],
+							"query": [
+								{
+									"key": "contractId",
+									"value": "{{contractId}}"
+								},
+								{
+									"key": "groupId",
+									"value": "{{groupId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update the hostnames",
+					"request": {
+						"auth": {
+							"type": "edgegrid",
+							"edgegrid": [
+								{
+									"key": "clientSecret",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientToken",
+									"value": "{{client_token}}",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "baseURL",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "PAPI-Use-Prefixes",
+								"type": "text",
+								"value": "true"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"cnameType\": \"EDGE_HOSTNAME\",\n        \"cnameFrom\": \"{{propertyHostname}}\",\n        \"cnameTo\": \"{{propertyHostname}}\"\n    }\n]"
+						},
+						"url": {
+							"raw": "https://{{host}}/papi/v1/properties/{{propertyId}}/versions/{{propertyVersion}}/hostnames?validateHostnames=false",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"papi",
+								"v1",
+								"properties",
+								"{{propertyId}}",
+								"versions",
+								"{{propertyVersion}}",
+								"hostnames"
+							],
+							"query": [
+								{
+									"key": "validateHostnames",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update the AMD Config",
+					"request": {
+						"auth": {
+							"type": "edgegrid",
+							"edgegrid": [
+								{
+									"key": "clientSecret",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientToken",
+									"value": "{{client_token}}",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "baseURL",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "PAPI-Use-Prefixes",
+								"type": "text",
+								"value": "true"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rules\": {\n        \"name\": \"default\",\n        \"children\": [\n            {\n                \"name\": \"Default CORS Policy\",\n                \"children\": [],\n                \"behaviors\": [\n                    {\n                        \"name\": \"modifyOutgoingResponseHeader\",\n                        \"options\": {\n                            \"action\": \"MODIFY\",\n                            \"avoidDuplicateHeaders\": false,\n                            \"newHeaderValue\": \"*\",\n                            \"standardModifyHeaderName\": \"ACCESS_CONTROL_ALLOW_ORIGIN\"\n                        }\n                    },\n                    {\n                        \"name\": \"modifyOutgoingResponseHeader\",\n                        \"options\": {\n                            \"action\": \"MODIFY\",\n                            \"avoidDuplicateHeaders\": false,\n                            \"newHeaderValue\": \"GET,POST,OPTIONS\",\n                            \"standardModifyHeaderName\": \"ACCESS_CONTROL_ALLOW_METHODS\"\n                        }\n                    },\n                    {\n                        \"name\": \"modifyOutgoingResponseHeader\",\n                        \"options\": {\n                            \"action\": \"MODIFY\",\n                            \"avoidDuplicateHeaders\": false,\n                            \"newHeaderValue\": \"origin,range,hdntl,hdnts\",\n                            \"standardModifyHeaderName\": \"ACCESS_CONTROL_ALLOW_HEADERS\"\n                        }\n                    },\n                    {\n                        \"name\": \"modifyOutgoingResponseHeader\",\n                        \"options\": {\n                            \"action\": \"MODIFY\",\n                            \"avoidDuplicateHeaders\": false,\n                            \"newHeaderValue\": \"Server,range,hdntl,hdnts,Akamai-Mon-Iucid-Ing,Akamai-Mon-Iucid-Del,Akamai-Request-BC\",\n                            \"standardModifyHeaderName\": \"ACCESS_CONTROL_EXPOSE_HEADERS\"\n                        }\n                    },\n                    {\n                        \"name\": \"modifyOutgoingResponseHeader\",\n                        \"options\": {\n                            \"action\": \"MODIFY\",\n                            \"avoidDuplicateHeaders\": false,\n                            \"newHeaderValue\": \"true\",\n                            \"standardModifyHeaderName\": \"ACCESS_CONTROL_ALLOW_CREDENTIALS\"\n                        }\n                    },\n                    {\n                        \"name\": \"modifyOutgoingResponseHeader\",\n                        \"options\": {\n                            \"action\": \"MODIFY\",\n                            \"avoidDuplicateHeaders\": false,\n                            \"newHeaderValue\": \"86400\",\n                            \"standardModifyHeaderName\": \"ACCESS_CONTROL_MAX_AGE\"\n                        }\n                    }\n                ],\n                \"criteria\": [],\n                \"criteriaMustSatisfy\": \"all\",\n                \"comments\": \"\"\n            }\n        ],\n        \"behaviors\": [\n            {\n                \"name\": \"origin\",\n                \"options\": {\n                    \"originType\": \"MEDIA_SERVICE_LIVE\",\n                    \"mslorigin\": \"{{hostname_MSL}}\"\n                }\n            },\n            {\n                \"name\": \"cpCode\",\n                \"options\": {\n                    \"value\": {\n                        \"id\": {{cpCode_AMD}}\n                    }\n                }\n            },\n            {\n                \"name\": \"segmentedMediaOptimization\",\n                \"options\": {\n                    \"behavior\": \"LIVE\",\n                    \"enableUllStreaming\": false,\n                    \"showAdvanced\": false\n                }\n            },\n            {\n                \"name\": \"originCharacteristics\",\n                \"options\": {\n                    \"authenticationMethod\": \"AUTOMATIC\",\n                    \"country\": \"UNKNOWN\",\n                    \"authenticationMethodTitle\": \"\"\n                }\n            },\n            {\n                \"name\": \"contentCharacteristicsAMD\",\n                \"options\": {\n                    \"catalogSize\": \"UNKNOWN\",\n                    \"contentType\": \"HD\",\n                    \"dash\": true,\n                    \"hds\": false,\n                    \"hls\": true,\n                    \"popularityDistribution\": \"UNKNOWN\",\n                    \"segmentDurationDASH\": \"SEGMENT_DURATION_2S\",\n                    \"segmentDurationHLS\": \"SEGMENT_DURATION_2S\",\n                    \"segmentSizeDASH\": \"UNKNOWN\",\n                    \"segmentSizeHLS\": \"UNKNOWN\",\n                    \"smooth\": false\n                }\n            },\n            {\n                \"name\": \"clientCharacteristics\",\n                \"options\": {\n                    \"country\": \"UNKNOWN\"\n                }\n            },\n            {\n                \"name\": \"cacheKeyQueryParams\",\n                \"options\": {\n                    \"behavior\": \"IGNORE_ALL\"\n                }\n            },\n            {\n                \"name\": \"segmentedContentProtection\",\n                \"options\": {\n                    \"enabled\": false,\n                    \"hlsMediaEncryption\": false,\n                    \"tokenAuthenticationTitle\": \"\",\n                    \"mediaEncryptionTitle\": \"\"\n                }\n            },\n            {\n                \"name\": \"dynamicThroughtputOptimization\",\n                \"options\": {\n                    \"enabled\": true\n                }\n            }\n        ],\n        \"options\": {\n            \"is_secure\": true\n        },\n        \"variables\": []\n    }\n} "
+						},
+						"url": {
+							"raw": "https://{{host}}/papi/v1/properties/{{propertyId}}/versions/{{propertyVersion}}/rules",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"papi",
+								"v1",
+								"properties",
+								"{{propertyId}}",
+								"versions",
+								"{{propertyVersion}}",
+								"rules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate the AMD Config",
+					"request": {
+						"auth": {
+							"type": "edgegrid",
+							"edgegrid": [
+								{
+									"key": "clientSecret",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientToken",
+									"value": "{{client_token}}",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "baseURL",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "PAPI-Use-Prefixes",
+								"type": "text",
+								"value": "true"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"propertyVersion\": {{propertyVersion}},\n    \"network\": \"{{network}}\",\n    \"note\": \"{{activationNote}}\",\n    \"useFastFallback\": false,\n    \"notifyEmails\": [\n        \"{{activationEmail}}\"\n    ],\n    \"acknowledgeWarnings\": [\n        \"msg_eac797d55da505d7f40dcd3857d003c83ba8d7c1\",\n        \"msg_e20b0545158f4035a34a5320d2bf39f7c0f1d511\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://{{host}}/papi/v1/properties/{{propertyId}}/activations?contractId={{contractId}}&groupId={{groupId}}",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"papi",
+								"v1",
+								"properties",
+								"{{propertyId}}",
+								"activations"
+							],
+							"query": [
+								{
+									"key": "contractId",
+									"value": "{{contractId}}"
+								},
+								{
+									"key": "groupId",
+									"value": "{{groupId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Phase 4: Enable encoder, ingest to Akamai, launch player and verify playback.",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "edgegrid",
+		"edgegrid": [
+			{
+				"key": "clientSecret",
+				"value": "{{client_secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientToken",
+				"value": "{{client_token}}",
+				"type": "string"
+			},
+			{
+				"key": "accessToken",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "33c16754-5a3e-4418-bb51-a2c80916e576",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6af21a18-10e7-4fba-b5ff-61207cf025fe",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
