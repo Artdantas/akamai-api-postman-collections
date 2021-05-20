@@ -331,7 +331,7 @@
 									"query": [
 										{
 											"key": "page",
-											"value": null,
+											"value": "",
 											"disabled": true
 										},
 										{
@@ -341,7 +341,7 @@
 										},
 										{
 											"key": "detail",
-											"value": null,
+											"value": "",
 											"disabled": true
 										}
 									]
@@ -724,37 +724,6 @@
 					"name": "Hostnames",
 					"item": [
 						{
-							"name": "Get Hostname Coverage",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://{{host}}/appsec/v1/hostname-coverage",
-									"protocol": "https",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"appsec",
-										"v1",
-										"hostname-coverage"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "Get the hostname coverage match targets",
 							"event": [
 								{
@@ -791,6 +760,37 @@
 											"key": "hostname",
 											"value": "{{hostnameToCheck}}"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Hostname Coverage",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/hostname-coverage",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"hostname-coverage"
 									]
 								}
 							},
@@ -1117,13 +1117,13 @@
 									"query": [
 										{
 											"key": "notMatched",
-											"value": null,
+											"value": "",
 											"description": "notMatched\tBoolean\tfalse\tIf true, returns all security policies in the configuration version which don't have a match target. If false, returns all security policies in the configuration version.",
 											"disabled": true
 										},
 										{
 											"key": "detail",
-											"value": null,
+											"value": "",
 											"description": "detail\tBoolean\ttrue\tWhen enabled, the response features a richer set of data than the default, which includes only the name and ID of each item.",
 											"disabled": true
 										}
@@ -1341,13 +1341,13 @@
 									"query": [
 										{
 											"key": "notMatched",
-											"value": null,
+											"value": "",
 											"description": "notMatched\tBoolean\tfalse\tIf true, returns all security policies in the configuration version which don't have a match target. If false, returns all security policies in the configuration version.",
 											"disabled": true
 										},
 										{
 											"key": "detail",
-											"value": null,
+											"value": "",
 											"description": "detail\tBoolean\ttrue\tWhen enabled, the response features a richer set of data than the default, which includes only the name and ID of each item.",
 											"disabled": true
 										}
@@ -1401,13 +1401,13 @@
 									"query": [
 										{
 											"key": "notMatched",
-											"value": null,
+											"value": "",
 											"description": "notMatched\tBoolean\tfalse\tIf true, returns all security policies in the configuration version which don't have a match target. If false, returns all security policies in the configuration version.",
 											"disabled": true
 										},
 										{
 											"key": "detail",
-											"value": null,
+											"value": "",
 											"description": "detail\tBoolean\ttrue\tWhen enabled, the response features a richer set of data than the default, which includes only the name and ID of each item.",
 											"disabled": true
 										}
@@ -1595,7 +1595,7 @@
 									"query": [
 										{
 											"key": "policyId",
-											"value": null,
+											"value": "",
 											"description": "policyId\tString\tancv_1234\tSpecifies the security policy to filter match targets.",
 											"disabled": true
 										}
@@ -1628,7 +1628,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"type\": \"website\",\n  \"configId\": {{configId}},\n  \"configVersion\": 1,\n  \"defaultFile\": \"NO_MATCH\",\n  \"effectiveSecurityControls\": {\n    \"applyApplicationLayerControls\": true,\n    \"applyNetworkLayerControls\": true,\n    \"applyRateControls\": true,\n    \"applySlowPostControls\": true\n  },\n  \"filePaths\": [\n    \"/*\"\n  ],\n  \"hostnames\": [\n    \"{{hostnameToAdd}}\"\n  ],\n  \"isNegativeFileExtensionMatch\": false,\n  \"isNegativePathMatch\": true,\n  \"securityPolicy\": {\n    \"policyId\": \"{{policyId}}\"\n  },\n  \"sequence\": 1,\n  \"targetId\": {{targetId}}\n}"
+									"raw": "{\n  \"type\": \"website\",\n  \"configId\": {{configId}},\n  \"configVersion\": 1,\n  \"defaultFile\": \"NO_MATCH\",\n  \"effectiveSecurityControls\": {\n    \"applyApplicationLayerControls\": true,\n    \"applyNetworkLayerControls\": true,\n    \"applyRateControls\": true,\n    \"applySlowPostControls\": true\n  },\n  \"filePaths\": [\n    \"/*\"\n  ],\n  \"hostnames\": [\n    \"{{hostnameToAdd}}\"\n  ],\n  \"isNegativeFileExtensionMatch\": false,\n  \"isNegativePathMatch\": true,\n  \"securityPolicy\": {\n    \"policyId\": \"{{policyId}}\"\n  }\n}"
 								},
 								"url": {
 									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/match-targets",
@@ -1732,7 +1732,7 @@
 									"query": [
 										{
 											"key": "includeChildObjectName",
-											"value": null,
+											"value": "",
 											"description": "includeChildObjectName\tBoolean\ttrue\tSpecify whether to return the object name in the payload."
 										}
 									]
@@ -3954,6 +3954,37 @@
 							"response": []
 						},
 						{
+							"name": "Get a reputation profile",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/reputation-profiles",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"appsec",
+										"v1",
+										"configs",
+										"{{configId}}",
+										"versions",
+										"{{versionNumber}}",
+										"reputation-profiles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Modify a reputation profile",
 							"request": {
 								"method": "PUT",
@@ -4341,6 +4372,46 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "List Akamai Events",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/event-viewer-api/v1/events",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"event-viewer-api",
+										"v1",
+										"events"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -4497,7 +4568,7 @@
 								},
 								{
 									"key": "listType",
-									"value": null,
+									"value": "",
 									"disabled": true
 								}
 							]
@@ -4998,6 +5069,533 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "Property Manager API",
+			"item": [
+				{
+					"name": "Create a Delivery Configuration",
+					"item": [
+						{
+							"name": "List Products",
+							"request": {
+								"auth": {
+									"type": "edgegrid",
+									"edgegrid": [
+										{
+											"key": "clientSecret",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "clientToken",
+											"value": "{{client_token}}",
+											"type": "string"
+										},
+										{
+											"key": "accessToken",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "baseURL",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/papi/v1/products?contractId={{contractId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"papi",
+										"v1",
+										"products"
+									],
+									"query": [
+										{
+											"key": "contractId",
+											"value": "{{contractId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create CP Code",
+							"request": {
+								"auth": {
+									"type": "edgegrid",
+									"edgegrid": [
+										{
+											"key": "clientSecret",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "clientToken",
+											"value": "{{client_token}}",
+											"type": "string"
+										},
+										{
+											"key": "accessToken",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "baseURL",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productId\": \"{{productId}}\",\n    \"cpcodeName\": \"{{cpCodeName}}\"\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/papi/v1/cpcodes?contractId={{contractId}}&groupId={{groupId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"papi",
+										"v1",
+										"cpcodes"
+									],
+									"query": [
+										{
+											"key": "contractId",
+											"value": "{{contractId}}"
+										},
+										{
+											"key": "groupId",
+											"value": "{{groupId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List CP Codes",
+							"request": {
+								"auth": {
+									"type": "edgegrid",
+									"edgegrid": [
+										{
+											"key": "clientSecret",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "clientToken",
+											"value": "{{client_token}}",
+											"type": "string"
+										},
+										{
+											"key": "accessToken",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "baseURL",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{host}}/papi/v1/cpcodes?groupId={{groupId}}&contractId={{contractId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"papi",
+										"v1",
+										"cpcodes"
+									],
+									"query": [
+										{
+											"key": "groupId",
+											"value": "{{groupId}}"
+										},
+										{
+											"key": "contractId",
+											"value": "{{contractId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Edge Hostname for AMD",
+							"request": {
+								"auth": {
+									"type": "edgegrid",
+									"edgegrid": [
+										{
+											"key": "clientSecret",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "clientToken",
+											"value": "{{client_token}}",
+											"type": "string"
+										},
+										{
+											"key": "accessToken",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "baseURL",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "PAPI-Use-Prefixes",
+										"value": "true",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productId\": \"{{productId}}\",\n    \"domainPrefix\": \"{{propertyHostname}}\",\n    \"domainSuffix\": \"edgesuite.net\",\n    \"secureNetwork\": \"STANDARD_TLS\",\n    \"ipVersionBehavior\": \"IPV6_COMPLIANCE\"\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/papi/v1/edgehostnames?contractId={{contractId}}&groupId={{groupId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"papi",
+										"v1",
+										"edgehostnames"
+									],
+									"query": [
+										{
+											"key": "contractId",
+											"value": "{{contractId}}"
+										},
+										{
+											"key": "groupId",
+											"value": "{{groupId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Delivery Config",
+							"request": {
+								"auth": {
+									"type": "edgegrid",
+									"edgegrid": [
+										{
+											"key": "clientSecret",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "clientToken",
+											"value": "{{client_token}}",
+											"type": "string"
+										},
+										{
+											"key": "accessToken",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "baseURL",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "PAPI-Use-Prefixes",
+										"value": "true",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"contractId\": \"{{contractId}}\",\n    \"groupId\": \"{{groupId}}\",\n    \"productId\": \"{{productId}}\",\n    \"propertyName\": \"{{propertyHostname}}\",\n    \"propertyVersion\": 1,\n    \"ruleFormat\": \"latest\"\n} "
+								},
+								"url": {
+									"raw": "https://{{host}}/papi/v1/properties?contractId={{contractId}}&groupId={{groupId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"papi",
+										"v1",
+										"properties"
+									],
+									"query": [
+										{
+											"key": "contractId",
+											"value": "{{contractId}}"
+										},
+										{
+											"key": "groupId",
+											"value": "{{groupId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update the hostnames",
+							"request": {
+								"auth": {
+									"type": "edgegrid",
+									"edgegrid": [
+										{
+											"key": "clientSecret",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "clientToken",
+											"value": "{{client_token}}",
+											"type": "string"
+										},
+										{
+											"key": "accessToken",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "baseURL",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "PAPI-Use-Prefixes",
+										"type": "text",
+										"value": "true"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n        \"cnameType\": \"EDGE_HOSTNAME\",\n        \"cnameFrom\": \"{{propertyHostname}}\",\n        \"cnameTo\": \"{{edgeHostname}}\"\n    }\n]"
+								},
+								"url": {
+									"raw": "https://{{host}}/papi/v1/properties/{{propertyId}}/versions/{{propertyVersion}}/hostnames?validateHostnames=false",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"papi",
+										"v1",
+										"properties",
+										"{{propertyId}}",
+										"versions",
+										"{{propertyVersion}}",
+										"hostnames"
+									],
+									"query": [
+										{
+											"key": "validateHostnames",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update the Config Rules",
+							"request": {
+								"auth": {
+									"type": "edgegrid",
+									"edgegrid": [
+										{
+											"key": "clientSecret",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "clientToken",
+											"value": "{{client_token}}",
+											"type": "string"
+										},
+										{
+											"key": "accessToken",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "baseURL",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "PAPI-Use-Prefixes",
+										"type": "text",
+										"value": "true"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{host}}/papi/v1/properties/{{propertyId}}/versions/{{propertyVersion}}/rules",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"papi",
+										"v1",
+										"properties",
+										"{{propertyId}}",
+										"versions",
+										"{{propertyVersion}}",
+										"rules"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Activate the Config",
+							"request": {
+								"auth": {
+									"type": "edgegrid",
+									"edgegrid": [
+										{
+											"key": "clientSecret",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "clientToken",
+											"value": "{{client_token}}",
+											"type": "string"
+										},
+										{
+											"key": "accessToken",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "baseURL",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "PAPI-Use-Prefixes",
+										"type": "text",
+										"value": "true"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"propertyVersion\": {{propertyVersion}},\n    \"network\": \"{{network}}\",\n    \"note\": \"{{notes}}\",\n    \"useFastFallback\": false,\n    \"notifyEmails\": [\n        \"{{email}}\"\n    ],\n    \"acknowledgeWarnings\": [\n\n    ]\n}"
+								},
+								"url": {
+									"raw": "https://{{host}}/papi/v1/properties/{{propertyId}}/activations?contractId={{contractId}}&groupId={{groupId}}",
+									"protocol": "https",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"papi",
+										"v1",
+										"properties",
+										"{{propertyId}}",
+										"activations"
+									],
+									"query": [
+										{
+											"key": "contractId",
+											"value": "{{contractId}}"
+										},
+										{
+											"key": "groupId",
+											"value": "{{groupId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
